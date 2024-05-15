@@ -29,7 +29,3 @@ class BaseModel:
         new_dict['created_at'] = new_dict['created_at'].isoformat()
         new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
-
-model = BaseModel()
-print(model)
-
