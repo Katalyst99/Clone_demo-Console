@@ -25,6 +25,28 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Prints string rep of instance based on name and id"""
+        if not line:
+            print('** class name missing **')
+        else:
+            strings = line.split()
+            if len(strings) == 1:
+                if strings[0] not in self.c_cls:
+                    print("** class doesn't exist **")
+                else:
+                    print('** instance id missing **')
+                return
+
+            c_name, id_inst = strings[0], strings[1]
+            if c_name not in self.c_cls:
+                print("** class doesn't exist **")
+                return
+
+            key = "{}.{}".format(c_name, id_inst)
+            inst = storage.all().get(key)
+            if inst:
+                print(inst)
+            else:
+                print('** no instance found **')
 
     def do_quit(self, line):
         """Quit command to exit the program"""
